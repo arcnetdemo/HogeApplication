@@ -1,5 +1,7 @@
 package jp.arc_net.hogeapplication;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -10,6 +12,8 @@ public class Main2Activity extends AppCompatActivity {
     private ListView listView;
     private ArrayAdapter<String> listViewAdapter;
 
+    private SQLiteDatabase hogeDb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +22,15 @@ public class Main2Activity extends AppCompatActivity {
         this.listView = (ListView) findViewById(R.id.listView);
         this.listViewAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 
-        this.listViewAdapter.add("test string. 1");
+        HogeSqlLiteOpenHelper hogeHelper = new HogeSqlLiteOpenHelper(getApplicationContext());
+        this.hogeDb = hogeHelper.getReadableDatabase();
+
+        //this.hogeDb.rawQuery("SELECT * FROM HOGE")
+
+        Intent intent = getIntent();
+        String str = intent.getStringExtra("INPUT_TEXT");
+
+        this.listViewAdapter.add(str); // "test string. 1"
         this.listViewAdapter.add("test string. 2");
         this.listViewAdapter.add("test string. 3");
         this.listViewAdapter.add("test string. 4");
