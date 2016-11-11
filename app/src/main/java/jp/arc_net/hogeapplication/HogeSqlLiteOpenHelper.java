@@ -11,10 +11,13 @@ public class HogeSqlLiteOpenHelper extends SQLiteOpenHelper {
 
     public static final String SQL_CREATE_TABLE = "CREATE TABLE HOGE_MESSAGE (PK INTEGER PRIMARY KEY AUTOINCREMENT," +
             " INPUT_TIME INTEGER NOT NULL," +
-            " INPUT_TEXT TEXT NOT NULL);";
+            " INPUT_TEXT TEXT NOT NULL," +
+            " LATITUDE REAL," +
+            " LONGITUDE REAL," +
+            " ALTITUDE REAL);";
 
     public HogeSqlLiteOpenHelper(Context context) {
-        super(context, "hoge_sqllite.db", null, 1);
+        super(context, "hoge_sqllite.db", null, 2);
     }
 
     @Override
