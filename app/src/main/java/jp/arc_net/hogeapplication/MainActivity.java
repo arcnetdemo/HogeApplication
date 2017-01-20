@@ -49,6 +49,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         ContentValues values = new ContentValues();
                         values.put("INPUT_TIME", System.currentTimeMillis());
                         values.put("INPUT_TEXT", str);
+
+                        values.put("LATITUDE", latitude);
+                        values.put("LONGITUDE", longitude);
+                        values.put("ALTITUDE", altitude);
+
                         hogeDb.insert("HOGE_MESSAGE", "NULL", values);
                         startActivity(intent);
                     }
